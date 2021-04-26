@@ -8,12 +8,12 @@ const { Header, Content, Footer } = Layout;
 const { Title } = Typography;
 
 type ShortenLinkResponse = {
-  short_link: string;
+  shortLink: string;
 }
 
 type ShortenLinkError = {
   error: string;
-  error_description: string;
+  description: string;
 }
 
 type FormValues = {
@@ -29,12 +29,12 @@ export default function Home() {
     try {
       const response = await axios.post<ShortenLinkResponse>('/api/shorten_link', { link });
       setStatus('success');
-      setMessage(response.data?.short_link);
+      setMessage(response.data?.shortLink);
     }
     catch(e) {
       const error = e as AxiosError<ShortenLinkError>;
       setStatus('error');
-      setMessage(error.response?.data?.error_description || 'Something went wrong!');
+      setMessage(error.response?.data?.description || 'Something went wrong!');
     }
   }
 
