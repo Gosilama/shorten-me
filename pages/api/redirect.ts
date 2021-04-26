@@ -6,7 +6,7 @@ export default async (req, res) => {
     const entry = await db.db(process.env.DB_NAME).collection('links').findOne({ shortLinkId: req.query.id as string });
 
     if (entry !== null) {
-        return res.redirect(301, entry.shortLink);
+        return res.redirect(301, entry.link);
     }
 
     return res.redirect(301, '/');
